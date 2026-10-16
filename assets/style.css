@@ -325,3 +325,6 @@ footer .logo-svg{height:72px;width:auto;color:var(--claro)}
 .equipe-grid .membro.destaque:not(.sem-foto){display:grid;grid-template-columns:minmax(0,300px) 1fr;align-items:start}
 @media (max-width:700px){.equipe-grid .membro.destaque:not(.sem-foto){grid-template-columns:1fr}}
 .membro .foto{display:block}
+
+/* Botão do WhatsApp acima do selo "Powered by Netlify" (canto inferior direito) */
+.wa-float{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
