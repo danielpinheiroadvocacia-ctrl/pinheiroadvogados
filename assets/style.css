@@ -1,0 +1,327 @@
+/* Pinheiro Advogados — folha de estilo
+   Paleta oficial da identidade: F8F8F8 · D0D0D0 · 999999 · 231F20
+   Tipografia: a logo usa Nexa (já convertida em desenho no SVG). Nos textos, Montserrat substitui a Nexa. */
+:root{
+  --branco:#F8F8F8; --claro:#D0D0D0; --medio:#999999; --escuro:#231F20;
+  --escuro-2:#2C2728; --escuro-3:#3A3536; --cinza-fundo:#EDEDED; --texto:#3A3536;
+  --fonte:"Nexa","Montserrat","Helvetica Neue",Arial,sans-serif;
+  --gutter:max(20px, env(safe-area-inset-left,0px));
+  --gutter-r:max(20px, env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--branco);color:var(--texto);font-family:var(--fonte);font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+h1,h2,h3{font-family:var(--fonte);color:var(--escuro);text-wrap:balance;margin:0}
+.eyebrow{font-weight:300;font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;color:var(--medio)}
+:focus-visible{outline:2px solid var(--medio);outline-offset:3px}
+.logo-svg path{fill:currentColor}
+
+/* Cabeçalho */
+.top{position:sticky;top:0;z-index:20;background:rgba(35,31,32,.97);backdrop-filter:blur(6px);color:var(--branco);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.brand{display:block;color:var(--branco);line-height:0}
+.brand .logo-svg{height:40px;width:auto}
+nav ul{list-style:none;display:flex;gap:26px;margin:0;padding:0}
+nav a{text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--claro);transition:color .2s}
+nav a:hover,nav a[aria-current="page"]{color:var(--branco)}
+nav a[aria-current="page"]{border-bottom:1px solid var(--medio);padding-bottom:4px}
+.menu-btn{display:none;background:none;border:1px solid var(--medio);color:var(--branco);border-radius:2px;padding:8px 12px;font:inherit;font-size:.78rem;letter-spacing:.14em;cursor:pointer}
+@media (max-width:900px){
+  .menu-btn{display:block}
+  nav{position:absolute;left:0;right:0;top:100%;background:var(--escuro);border-top:1px solid var(--escuro-3)}
+  nav ul{flex-direction:column;gap:0;padding:8px var(--gutter-r) 16px var(--gutter)}
+  nav a{display:block;padding:12px 0}
+  nav a[aria-current="page"]{border:0}
+  nav[data-open="false"]{display:none}
+}
+
+/* Abertura */
+.hero{background:radial-gradient(ellipse 70% 60% at 50% 32%,#3b3536 0%,transparent 70%),linear-gradient(180deg,#1b1819 0%,var(--escuro) 100%);color:var(--branco);text-align:center;padding-block:84px 92px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 119px,rgba(255,255,255,.022) 119px 120px);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:26px}
+.hero-logo{width:min(380px,78vw);height:auto;filter:drop-shadow(0 3px 8px rgba(0,0,0,.55))}
+.hero p.lead{max-width:560px;color:var(--claro);font-weight:300;font-size:1.05rem;margin:0}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:2px;text-decoration:none;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s,color .2s,border-color .2s;border:1px solid transparent}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-claro{background:var(--branco);color:var(--escuro)}
+.btn-claro:hover{background:var(--claro)}
+.btn-linha{border-color:var(--medio);color:var(--branco)}
+.btn-linha:hover{border-color:var(--branco)}
+.btn-escuro{background:var(--escuro);color:var(--branco)}
+.btn-escuro:hover{background:var(--escuro-3)}
+
+/* Faixa de título das páginas internas */
+.faixa{background:linear-gradient(180deg,#1b1819 0%,var(--escuro) 100%);color:var(--claro);padding-block:64px 56px;position:relative;overflow:hidden}
+.faixa .marca-agua{position:absolute;top:50%;right:max(20px, env(safe-area-inset-right,0px));transform:translateY(-50%);height:calc(100% - 64px);max-height:220px;width:auto;max-width:40%;color:#ffffff;opacity:.06;pointer-events:none}
+@media (max-width:700px){.faixa .marca-agua{top:20px;transform:none;height:72px;max-width:none}}
+.faixa .wrap{position:relative;display:flex;flex-direction:column;gap:14px}
+.faixa h1{color:var(--branco);font-weight:800;font-size:clamp(1.9rem,5vw,3rem);line-height:1.12;max-width:22ch}
+.faixa p{margin:0;max-width:62ch;font-weight:300}
+.migalha{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--medio)}
+.migalha a{text-decoration:none}
+.migalha a:hover{color:var(--branco)}
+
+/* Seções */
+section{padding-block:84px}
+.sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:44px;max-width:640px}
+.sec-head h2{font-weight:800;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15}
+.rule{width:56px;height:3px;background:var(--escuro)}
+.sec-head.claro h2{color:var(--branco)}
+.sec-head.claro .rule{background:var(--claro)}
+
+.sobre-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
+.sobre-grid>*{min-width:0}
+.sobre p{margin:0 0 18px;max-width:62ch}
+.pilares{display:grid;border-top:1px solid var(--claro);margin:0}
+.pilar{padding:22px 0;border-bottom:1px solid var(--claro);display:grid;grid-template-columns:150px 1fr;gap:16px}
+.pilar dt{font-weight:800;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--escuro)}
+.pilar dd{margin:0;font-size:.95rem}
+@media (max-width:820px){.sobre-grid{grid-template-columns:1fr;gap:40px}}
+@media (max-width:440px){.pilar{grid-template-columns:1fr;gap:4px}}
+
+/* Áreas */
+.areas{background:var(--cinza-fundo)}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2px;background:var(--claro);border:2px solid var(--claro)}
+.area{background:var(--branco);padding:30px 26px;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:var(--texto);transition:background .25s,color .25s}
+.area .ic{width:34px;height:34px;color:var(--medio);transition:color .25s}
+.area h3{font-weight:800;font-size:1.06rem;line-height:1.3}
+.area p{margin:0;font-size:.9rem;line-height:1.65;flex:1}
+.area .mais{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--escuro);display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--claro);padding-top:14px;margin-top:4px}
+.area .mais .qtd{color:var(--medio);font-weight:500}
+a.area:hover{background:var(--escuro);color:var(--claro)}
+a.area:hover h3,a.area:hover .mais{color:var(--branco)}
+a.area:hover .ic{color:var(--branco)}
+a.area:hover .mais{border-color:var(--escuro-3)}
+.area.cta-area{background:var(--escuro);color:var(--claro);justify-content:space-between}
+.area.cta-area h3{color:var(--branco)}
+.area.cta-area .link{color:var(--branco);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--medio);align-self:flex-start;padding-bottom:4px}
+
+/* Publicações */
+.lista-pub{display:grid;gap:0;border-top:1px solid var(--claro)}
+.pub{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--claro);text-decoration:none;color:var(--texto)}
+.pub>*{min-width:0}
+.pub .meta{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--medio);display:flex;flex-direction:column;gap:4px}
+.pub .meta b{color:var(--escuro);font-weight:700}
+.pub h3{font-weight:800;font-size:1.15rem;line-height:1.35;transition:color .2s}
+.pub p{margin:6px 0 0;font-size:.93rem}
+.pub:hover h3{color:var(--medio)}
+@media (max-width:600px){.pub{grid-template-columns:1fr;gap:8px}}
+.vazio{border:1px dashed var(--medio);padding:40px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--medio)}
+.vazio .simb{width:64px;color:var(--claro)}
+.vazio strong{color:var(--escuro);font-weight:700}
+.vazio p{margin:0;max-width:46ch;font-size:.92rem}
+
+/* Página de área */
+.area-layout{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.area-layout>*{min-width:0}
+.lateral{display:flex;flex-direction:column;gap:28px;position:sticky;top:96px}
+.box{background:var(--cinza-fundo);padding:26px}
+.box h3{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+.box ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.box li a{display:block;padding:9px 0;border-bottom:1px solid var(--claro);text-decoration:none;font-size:.9rem}
+.box li a:hover{color:var(--medio)}
+.box.escuro{background:var(--escuro);color:var(--claro)}
+.box.escuro h3{color:var(--branco)}
+.box.escuro p{margin:0 0 16px;font-size:.9rem}
+@media (max-width:900px){.area-layout{grid-template-columns:1fr}.lateral{position:static}}
+
+/* Artigo */
+.artigo{max-width:720px}
+.artigo .capa{margin-bottom:32px;width:100%;aspect-ratio:16/9;object-fit:cover}
+.corpo{font-size:1.04rem;line-height:1.85}
+.corpo h2{font-size:1.5rem;font-weight:800;margin:40px 0 12px}
+.corpo h3{font-size:1.2rem;font-weight:700;margin:32px 0 10px}
+.corpo p{margin:0 0 20px}
+.corpo blockquote{margin:28px 0;padding:6px 0 6px 22px;border-left:3px solid var(--escuro);color:var(--escuro);font-style:italic}
+.corpo ul,.corpo ol{padding-left:22px;margin:0 0 20px}
+.corpo a{text-decoration-color:var(--medio)}
+.corpo img{margin:24px 0}
+.voltar{display:inline-block;margin-top:40px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--medio);padding-bottom:4px}
+
+/* Equipe */
+.equipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.membro{display:flex;flex-direction:column;background:var(--branco);border:1px solid var(--claro)}
+.membro .foto{aspect-ratio:4/5;width:100%;object-fit:cover;object-position:50% 15%;background:var(--claro)}
+.membro .foto-vazia{aspect-ratio:4/5;width:100%;background:linear-gradient(180deg,#2a2526,var(--escuro));display:grid;place-items:center;color:#4a4445}
+.membro .foto-vazia svg{width:45%}
+.membro .info{padding:22px 22px 26px;display:flex;flex-direction:column;gap:6px}
+.membro h3{font-weight:800;font-size:1.15rem}
+.membro .cargo{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--medio)}
+.membro .oab{font-size:.82rem;color:var(--escuro);font-weight:600}
+.membro p{margin:8px 0 0;font-size:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tags span{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--claro);padding:3px 8px;color:var(--texto)}
+.membro .mail{margin-top:10px;font-size:.85rem;overflow-wrap:anywhere}
+
+/* Contato */
+.contato{background:var(--escuro);color:var(--claro)}
+.contato-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--escuro-3);border:2px solid var(--escuro-3)}
+.canal{background:var(--escuro-2);padding:30px 26px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--claro);min-width:0;transition:background .2s}
+a.canal:hover{background:#383233}
+.canal svg{width:28px;height:28px;color:var(--branco)}
+.canal .rot{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--medio)}
+.canal .val{font-weight:700;color:var(--branco);font-size:1.05rem;overflow-wrap:anywhere}
+.canal .det{font-size:.85rem;font-weight:300}
+@media (max-width:820px){.contato-grid{grid-template-columns:1fr}}
+
+footer{background:#1a1718;color:var(--medio);font-size:.8rem;padding-block:36px calc(36px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px 32px;justify-content:space-between;align-items:center}
+footer .logo-svg{height:34px;width:auto;color:var(--medio)}
+footer p{margin:0;max-width:60ch}
+
+.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:58px;height:58px;border-radius:50%;background:var(--branco);color:var(--escuro);display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.28);border:1px solid var(--claro);transition:transform .2s}
+.wa-float:hover{transform:scale(1.06)}
+.wa-float svg{width:28px;height:28px}
+.vazio .simb svg,.foto-vazia svg{height:auto;display:block}.vazio .simb svg{width:100%}
+
+@media (max-width:1000px) and (min-width:901px){nav ul{gap:18px}}
+
+/* Card de atendimento ocupa a linha inteira da grade de áreas */
+.area.cta-area{grid-column:1/-1;flex-direction:row;align-items:center;flex-wrap:wrap;gap:12px 32px}
+.area.cta-area p{flex:1 1 280px}
+
+/* Novidades e informações jurídicas */
+.novidades-home{background:var(--branco)}
+.publicacoes{background:var(--cinza-fundo)}
+.sec-head-linha{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:44px}
+.sec-head-linha .sec-head{margin-bottom:0}
+.link-todos{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--medio);padding-bottom:4px;color:var(--escuro)}
+.nov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
+.nov{display:flex;flex-direction:column;background:#fff;border:1px solid var(--claro);text-decoration:none;color:var(--texto);transition:border-color .2s,transform .2s}
+.nov:hover{border-color:var(--escuro);transform:translateY(-2px)}
+.nov img{aspect-ratio:16/9;width:100%;object-fit:cover}
+.nov-txt{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.nov-meta{display:flex;justify-content:space-between;gap:12px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--medio)}
+.nov-meta .cat{color:var(--escuro);font-weight:700}
+.nov h3{font-weight:800;font-size:1.1rem;line-height:1.35}
+.nov p{margin:0;font-size:.9rem;flex:1}
+.nov .ler{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--escuro);border-top:1px solid var(--claro);padding-top:12px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.filtro{font:inherit;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--texto);border:1px solid var(--claro);padding:9px 16px;cursor:pointer;border-radius:2px}
+.filtro:hover{border-color:var(--escuro)}
+.filtro[aria-pressed="true"]{background:var(--escuro);border-color:var(--escuro);color:var(--branco)}
+.fonte{font-size:.88rem;color:var(--medio);border-top:1px solid var(--claro);padding-top:16px;margin-top:8px}
+
+/* Equipe com um único profissional: cartão horizontal */
+.equipe-grid.solo{grid-template-columns:1fr;max-width:900px}
+.equipe-grid.solo .membro{display:grid;grid-template-columns:minmax(0,360px) 1fr}
+.equipe-grid.solo .membro.sem-foto{display:flex}
+.equipe-grid.solo .info{padding:40px 36px;justify-content:center;gap:8px}
+.equipe-grid.solo h3{font-size:1.6rem;line-height:1.2}
+.equipe-grid.solo p{font-size:1rem;line-height:1.75}
+@media (max-width:700px){.equipe-grid.solo .membro{grid-template-columns:1fr}.equipe-grid.solo .info{padding:24px 22px 28px}}
+
+/* Perfil sem foto */
+.membro.sem-foto{border-top:3px solid var(--escuro)}
+.membro .titulacao{margin:14px 0 4px;color:var(--escuro);font-weight:500}
+.especializacoes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 28px}
+.especializacoes li{padding:10px 0 10px 20px;border-bottom:1px solid var(--claro);position:relative;font-size:.95rem}
+.especializacoes li::before{content:"";position:absolute;left:0;top:50%;width:8px;height:2px;background:var(--medio)}
+
+/* Sócio fundador em destaque no topo da equipe */
+.equipe-grid .membro.destaque{grid-column:1/-1}
+.equipe-grid .membro.destaque .info{padding:34px 34px 30px}
+.equipe-grid .membro.destaque h3{font-size:1.55rem;line-height:1.2}
+.equipe-grid .membro:not(.destaque) .especializacoes{grid-template-columns:1fr}
+
+/* Grade de áreas: 10 áreas sem espaços vazios (5 colunas > 2 colunas > 1 coluna) */
+.grade{grid-template-columns:1fr}
+@media (min-width:640px){.grade{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.grade{grid-template-columns:repeat(4,1fr)}}
+
+/* Cartões da equipe com alturas independentes */
+.equipe-grid{align-items:start}
+
+/* 11 áreas + card de atendimento = 12 células: 4x3 / 2x6 / 1x12, sem espaços vazios */
+.area.cta-area{grid-column:auto;flex-direction:column;align-items:stretch;justify-content:space-between;gap:12px}
+.area.cta-area p{flex:1}
+
+/* ==========================================================
+   Ajuste minimalista conforme a identidade visual (v2 do PDF)
+   Cores planas da paleta, sem gradientes, sombras ou ícones;
+   tipografia em dois pesos (Heavy / Light) e linhas finas.
+   ========================================================== */
+.hero{background:var(--escuro);padding-block:96px 100px}
+.hero::after{content:none}
+.hero-logo{width:min(340px,74vw);color:var(--branco);filter:none}
+.hero .eyebrow{color:var(--medio)}
+.hero p.lead{color:var(--claro)}
+.btn{border-radius:0;font-weight:500;letter-spacing:.18em}
+.btn-claro{background:var(--branco);color:var(--escuro)}
+.btn-linha{border-color:var(--medio)}
+
+.faixa{background:var(--escuro);padding-block:72px 64px}
+.faixa h1{font-weight:800}
+.faixa p{font-weight:300;color:var(--claro)}
+
+.sec-head{margin-bottom:40px}
+.sec-head h2{font-weight:800;letter-spacing:-.005em}
+.eyebrow{font-weight:300;letter-spacing:.38em}
+
+/* Seções claras em um único fundo, separadas por linha fina */
+.areas,.publicacoes,.novidades-home,.sobre{background:var(--branco)}
+main>section+section:not(.contato){border-top:1px solid var(--claro)}
+
+/* Cards de área: só título, texto e link; hover discreto */
+.grade{gap:1px;background:var(--claro);border:1px solid var(--claro)}
+.area{background:var(--branco);transition:background .2s}
+.area h3{font-weight:800}
+.area .mais{border-top:0;padding-top:0;font-weight:500;letter-spacing:.18em}
+.area .mais>span:first-child::after{content:" \2192"}
+a.area:hover{background:#fff;color:var(--texto)}
+a.area:hover h3{color:var(--escuro)}
+a.area:hover .mais{color:var(--escuro)}
+a.area:hover .mais>span:first-child{text-decoration:underline;text-underline-offset:4px}
+.area.cta-area{background:var(--escuro)}
+.area.cta-area .link{border-bottom-color:var(--medio);font-weight:500;letter-spacing:.18em}
+
+/* Equipe, novidades e caixas laterais: contornos finos, sem destaques pesados */
+.membro,.membro.sem-foto{border:1px solid var(--claro);border-top:1px solid var(--claro);background:var(--branco)}
+.membro.destaque{border-top:1px solid var(--escuro)}
+.especializacoes li::before{width:6px;height:1px}
+.nov{background:var(--branco)}
+.nov:hover{transform:none;border-color:var(--medio)}
+.chip{background:transparent;color:var(--escuro);padding:0;font-weight:700}
+.box{background:transparent;border:1px solid var(--claro)}
+.box.escuro{background:var(--escuro);border-color:var(--escuro)}
+.vazio{border-style:solid;border-color:var(--claro)}
+.vazio .simb{width:44px}
+.filtros button{border-radius:0}
+
+/* Contato e rodapé planos */
+.contato-grid{gap:1px;background:var(--escuro-3);border:1px solid var(--escuro-3)}
+.canal{background:var(--escuro)}
+a.canal:hover{background:var(--escuro-2)}
+footer{background:var(--escuro);border-top:1px solid var(--escuro-3)}
+
+.wa-float{box-shadow:none;border:1px solid var(--claro)}
+.top{background:var(--escuro);backdrop-filter:none}
+
+/* ==========================================================
+   Logo vertical em todas as aplicações
+   (tipografia dos textos mantida como na versão anterior)
+   ========================================================== */
+.top .wrap{min-height:88px;padding-block:10px}
+.brand .logo-svg{height:64px;width:auto}
+footer .logo-svg{height:72px;width:auto;color:var(--claro)}
+.hero-logo{width:min(360px,76vw)}
+.vazio .simb{width:110px}
+@media (max-width:900px){nav{top:100%}}
+@media (max-width:480px){.brand .logo-svg{height:54px}.top .wrap{min-height:76px}}
+
+
+/* Logo e símbolo em prata (degradê com os tons da paleta: F8F8F8 · D0D0D0 · 999999) */
+.defs-prata{position:absolute;width:0;height:0;overflow:hidden}
+.vazio .simb svg path{fill:url(#prata-escura)}
+.faixa .marca-agua{opacity:.09}
+
+/* Cartão do sócio fundador com foto: foto à esquerda, texto à direita */
+.equipe-grid .membro.destaque:not(.sem-foto){display:grid;grid-template-columns:minmax(0,300px) 1fr;align-items:start}
+@media (max-width:700px){.equipe-grid .membro.destaque:not(.sem-foto){grid-template-columns:1fr}}
+.membro .foto{display:block}

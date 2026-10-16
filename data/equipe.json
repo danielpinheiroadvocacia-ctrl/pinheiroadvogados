@@ -1,0 +1,58 @@
+{
+  "membros": [
+    {
+      "nome": "Daniel Pinheiro da Silva Filho",
+      "cargo": "Sócio fundador",
+      "oab": "",
+      "foto": "",
+      "titulacao": "Advogado, pós-graduado e especialista em:",
+      "especializacoes": [
+        "Direito Público",
+        "Processo Legislativo",
+        "Advocacia Municipal",
+        "Licitações e Contratos",
+        "Direito e Processo Civil"
+      ],
+      "areas": [],
+      "bio": "",
+      "email": ""
+    },
+    {
+      "nome": "José Caio Siqueira Barbosa",
+      "cargo": "Advogado",
+      "oab": "",
+      "foto": "",
+      "titulacao": "",
+      "especializacoes": [],
+      "areas": [],
+      "bio": "",
+      "email": ""
+    },
+    {
+      "nome": "Islane Fernandes Oliveira",
+      "cargo": "Advogada",
+      "oab": "",
+      "foto": "",
+      "titulacao": "",
+      "especializacoes": [],
+      "areas": [],
+      "bio": "",
+      "email": ""
+    },
+    {
+      "nome": "Larissa de Araújo Alves Rodrigues da Silva",
+      "cargo": "Advogada",
+      "oab": "",
+      "foto": "",
+      "titulacao": "Advogada, pós-graduada e especialista em:",
+      "especializacoes": [
+        "Direito e Processo Trabalhista",
+        "Direito e Processo Penal",
+        "Direito Administrativo"
+      ],
+      "areas": [],
+      "bio": "",
+      "email": ""
+    }
+  ]
+}

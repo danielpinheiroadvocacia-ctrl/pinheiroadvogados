@@ -1,0 +1,134 @@
+# Painel de conteúdo (Decap CMS) — Pinheiro Advogados
+# Repositório do site no GitHub
+backend:
+  name: github
+  repo: danielpinheiroadvocacia-ctrl/pinheiroadvogados
+  branch: main
+
+locale: pt
+media_folder: img/uploads
+public_folder: /img/uploads
+
+collections:
+  - name: publicacoes
+    label: Publicações
+    editor: { preview: false }
+    files:
+      - name: artigos
+        label: Artigos e conteúdos
+        file: data/artigos.json
+        fields:
+          - name: artigos
+            label: Artigos
+            label_singular: Artigo
+            widget: list
+            summary: "{{fields.titulo}} ({{fields.data}})"
+            add_to_top: true
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - name: slug
+                label: Endereço do artigo (sem acentos, só letras minúsculas, números e hífens)
+                widget: string
+                pattern: ['^[a-z0-9-]+$', 'Use apenas letras minúsculas sem acento, números e hífens. Ex.: guarda-compartilhada']
+              - name: area
+                label: Área de atuação
+                widget: select
+                options:
+                  - { label: Direito Público, value: direito-publico }
+                  - { label: Direito Civil, value: direito-civil }
+                  - { label: Direito Tributário, value: direito-tributario }
+                  - { label: Direito do Consumidor, value: direito-do-consumidor }
+                  - { label: Família e Sucessões, value: familia-e-sucessoes }
+                  - { label: "Direito Imobiliário, Real e Possessório", value: direito-imobiliario }
+                  - { label: Direito Trabalhista, value: direito-trabalhista }
+                  - { label: Direito do Servidor Público, value: direito-do-servidor-publico }
+                  - { label: Direito Previdenciário, value: direito-previdenciario }
+                  - { label: Direito Empresarial, value: direito-empresarial }
+                  - { label: Direito Criminal, value: direito-criminal }
+              - { name: data, label: Data de publicação, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+              - { name: autor, label: Autor(a), widget: string, required: false }
+              - { name: resumo, label: Resumo (aparece na lista), widget: text }
+              - { name: imagem, label: Imagem de capa, widget: image, required: false }
+              - { name: corpo, label: Texto do artigo, widget: markdown }
+
+  - name: novidades
+    label: Novidades e informações jurídicas
+    editor: { preview: false }
+    files:
+      - name: novidades
+        label: Novidades
+        file: data/novidades.json
+        fields:
+          - name: novidades
+            label: Novidades
+            label_singular: Novidade
+            widget: list
+            summary: "{{fields.titulo}} ({{fields.data}})"
+            add_to_top: true
+            fields:
+              - { name: titulo, label: Título, widget: string }
+              - name: slug
+                label: Endereço da novidade (sem acentos, só letras minúsculas, números e hífens)
+                widget: string
+                pattern: ['^[a-z0-9-]+$', 'Use apenas letras minúsculas sem acento, números e hífens. Ex.: nova-lei-do-inquilinato']
+              - name: categoria
+                label: Categoria
+                widget: select
+                options:
+                  - { label: Legislação, value: legislacao }
+                  - { label: Jurisprudência, value: jurisprudencia }
+                  - { label: Notícias jurídicas, value: noticias }
+                  - { label: Prazos e calendário, value: prazos }
+                  - { label: Comunicados do escritório, value: escritorio }
+              - { name: data, label: Data de publicação, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+              - { name: autor, label: Autor(a), widget: string, required: false }
+              - { name: resumo, label: Resumo (aparece nos cards), widget: text }
+              - { name: imagem, label: Imagem, widget: image, required: false }
+              - { name: corpo, label: Texto, widget: markdown }
+              - { name: fonte_nome, label: "Fonte (ex.: STJ, Diário Oficial da União)", widget: string, required: false }
+              - { name: fonte_url, label: Link da fonte oficial, widget: string, required: false }
+
+  - name: escritorio
+    label: Equipe jurídica
+    editor: { preview: false }
+    files:
+      - name: equipe
+        label: Profissionais
+        file: data/equipe.json
+        fields:
+          - name: membros
+            label: Profissionais (arraste para mudar a ordem)
+            label_singular: Profissional
+            widget: list
+            summary: "{{fields.nome}} — {{fields.cargo}}"
+            fields:
+              - { name: nome, label: Nome, widget: string }
+              - { name: cargo, label: "Cargo (ex.: Sócio, Advogada associada, Estagiário)", widget: string }
+              - { name: oab, label: "Inscrição OAB (ex.: OAB/RN 12.345)", widget: string, required: false }
+              - { name: foto, label: Foto (vertical, de preferência), widget: image, required: false }
+              - { name: titulacao, label: "Titulação (ex.: Advogado, pós-graduado e especialista em:)", widget: string, required: false }
+              - name: especializacoes
+                label: Especializações
+                label_singular: Especialização
+                widget: list
+                required: false
+                field: { name: item, label: Especialização, widget: string }
+              - name: areas
+                label: Áreas de atuação
+                widget: select
+                multiple: true
+                required: false
+                options:
+                  - { label: Direito Público, value: direito-publico }
+                  - { label: Direito Civil, value: direito-civil }
+                  - { label: Direito Tributário, value: direito-tributario }
+                  - { label: Direito do Consumidor, value: direito-do-consumidor }
+                  - { label: Família e Sucessões, value: familia-e-sucessoes }
+                  - { label: "Direito Imobiliário, Real e Possessório", value: direito-imobiliario }
+                  - { label: Direito Trabalhista, value: direito-trabalhista }
+                  - { label: Direito do Servidor Público, value: direito-do-servidor-publico }
+                  - { label: Direito Previdenciário, value: direito-previdenciario }
+                  - { label: Direito Empresarial, value: direito-empresarial }
+                  - { label: Direito Criminal, value: direito-criminal }
+              - { name: bio, label: Breve apresentação, widget: text, required: false }
+              - { name: email, label: E-mail, widget: string, required: false }
