@@ -4,6 +4,9 @@ backend:
   name: github
   repo: danielpinheiroadvocacia-ctrl/pinheiroadvogados
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  site_domain: pinheiroadvogados.netlify.app
 
 locale: pt
 media_folder: img/uploads
