@@ -23,7 +23,7 @@ O painel grava os textos num repositório do GitHub, e o Netlify republica o sit
 4. No Netlify: "Add new project > Import an existing project > GitHub" e escolha o repositório. Não há comando de build; o diretório de publicação é a raiz.
 5. Crie o app de login no GitHub: Settings > Developer settings > OAuth Apps > New OAuth App.
    - Homepage URL: o endereço do site
-   - Authorization callback URL: `https://api.netlify.com/auth/done`
+   - Redirect URI (antes chamado "Authorization callback URL"): `https://api.netlify.com/auth/done`
    - Copie o Client ID e gere um Client Secret.
 6. No Netlify: Project configuration > Security > OAuth > Install provider > GitHub, e cole o Client ID e o Secret.
 7. Acesse `https://pinheiroadvogados.netlify.app/admin`, entre com o GitHub e publique.
