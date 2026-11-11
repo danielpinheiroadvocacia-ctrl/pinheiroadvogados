@@ -19,7 +19,7 @@ Siga os passos 1 a 6 do GUIA_ILUSTRADO.pdf no console do Firebase:
 5. Colar as regras do arquivo `firestore.rules` deste repositório (já com o e-mail institucional) e publicar.
 6. Registrar o app web e copiar o bloco `firebaseConfig`.
 
-Em vez dos passos 7 e 8 do guia (editar o arquivo e usar o Netlify Drop), envie ao Claude o bloco `firebaseConfig`. Ele preenche `interno/index.html` e publica.
+Projeto Firebase: `pinheiro-advogados-e689b` (plano gratuito Spark). As chaves já estão em `interno/index.html`.
 O `firebaseConfig` não é senha: ele identifica o projeto e fica visível no navegador por natureza. A proteção está nas regras do Firestore. Nunca envie a senha.
 
 Depois:
