@@ -11,6 +11,7 @@
 - `novidades.html` e `novidade.html`: Novidades e informações jurídicas (menu), com filtro por categoria
 - `equipe.html`: Equipe jurídica (menu)
 - `data/artigos.json`, `data/novidades.json` e `data/equipe.json`: conteúdo (editado pelo painel)
+- `interno/`: área interna de gestão (processos e financeiro), com login individual. Ver AREA-INTERNA.md
 - `admin/`: painel de conteúdo (Decap CMS) em `seusite/admin`
 - `marca/`: logo e símbolo em SVG (claro e escuro), extraídos do PDF da identidade visual
 
