@@ -33,8 +33,11 @@
       "cargo": "Advogada",
       "oab": "",
       "foto": "",
-      "titulacao": "",
-      "especializacoes": [],
+      "titulacao": "Advogada, pós-graduada e especialista em:",
+      "especializacoes": [
+        "Direito Previdenciário",
+        "Direito de Família e Sucessões"
+      ],
       "areas": [],
       "bio": "",
       "email": ""
