@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /interno/
-Sitemap: https://pinheiroadvogados.netlify.app/sitemap.xml
+Sitemap: https://pinheiroadvogadosrn.com.br/sitemap.xml

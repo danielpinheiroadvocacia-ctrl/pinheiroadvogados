@@ -1,6 +1,6 @@
 # Área interna (gestão de processos e financeiro)
 
-Endereço: https://pinheiroadvogados.netlify.app/interno/
+Endereço: https://pinheiroadvogadosrn.com.br/interno/
 Também há um link discreto "Área interna" no rodapé de todas as páginas do site.
 
 ## Como a segurança funciona
@@ -29,7 +29,7 @@ Projeto Firebase: `pinheiro-advogados-e689b` (plano gratuito Spark). As chaves j
 O `firebaseConfig` não é senha: ele identifica o projeto e fica visível no navegador por natureza. A proteção está nas regras do Firestore. Nunca envie a senha.
 
 Depois:
-7. No Firebase, em Authentication > Settings > Authorized domains, adicione `pinheiroadvogados.netlify.app`.
+7. No Firebase, em Authentication > Settings > Authorized domains, estão autorizados `pinheiroadvogados.netlify.app`, `pinheiroadvogadosrn.com.br` e `www.pinheiroadvogadosrn.com.br`.
 8. Acesse a área interna e entre com o e-mail institucional. "Esqueci a senha" envia o link de troca para esse e-mail.
 
 ## Trazer os dados da versão anterior
