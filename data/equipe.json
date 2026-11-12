@@ -22,8 +22,10 @@
       "cargo": "Advogado",
       "oab": "",
       "foto": "",
-      "titulacao": "",
-      "especializacoes": [],
+      "titulacao": "Advogado, pós-graduado em:",
+      "especializacoes": [
+        "Direito Público"
+      ],
       "areas": [],
       "bio": "",
       "email": ""
