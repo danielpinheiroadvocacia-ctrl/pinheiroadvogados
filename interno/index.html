@@ -88,7 +88,7 @@ label.quem select{width:auto;padding:4px 6px;background:#231F20;color:#F8F8F8;bo
 <dialog id="dlg"><form method="dialog" id="frm"></form></dialog>
 <script type="module">
 import {initializeApp,deleteApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,createUserWithEmailAndPassword,EmailAuthProvider,reauthenticateWithCredential,updatePassword} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getAuth,initializeAuth,inMemoryPersistence,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,createUserWithEmailAndPassword,EmailAuthProvider,reauthenticateWithCredential,updatePassword} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {getFirestore,collection,doc,setDoc,deleteDoc,onSnapshot,getDoc,addDoc,query,orderBy,limit,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 /* ===== CONFIGURAÇÃO (preencha conforme o passo a passo) ===== */
 const firebaseConfig={apiKey:"AIzaSyBdZeWvkhUHeWRB6W3UtnluJlbPhtJj3NA",authDomain:"pinheiro-advogados-e689b.firebaseapp.com",projectId:"pinheiro-advogados-e689b",storageBucket:"pinheiro-advogados-e689b.firebasestorage.app",messagingSenderId:"788851175797",appId:"1:788851175797:web:10b92b38635a1bb3b0633c"};
@@ -290,7 +290,7 @@ $('#mode').textContent='Conectado: as alterações de qualquer sócio aparecem e
 function showLogin(m){$('#login').style.display='flex';$('#lmsg').textContent=m||'';$('#who').textContent='';$('#out').hidden=true;$('#im').hidden=true;$('#sn').hidden=true}
 $('#bk').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'pinheiro',v:1,dados:S},null,1)],{type:'application/json'}));a.download='pinheiro-backup-'+iso(today())+'.json';document.body.appendChild(a);a.click();a.remove()};
 if(firebaseConfig.apiKey.startsWith('COLE')){showLogin('Área interna em configuração: falta ligar o banco de dados (Firebase). Veja o guia AREA-INTERNA.md.');$('#lf button').disabled=true}
-else{const app=initializeApp(firebaseConfig);auth=getAuth(app);fs=getFirestore(app);
+else{const app=initializeApp(firebaseConfig);auth=initializeAuth(app,{persistence:inMemoryPersistence});try{indexedDB.deleteDatabase("firebaseLocalStorageDb")}catch(x){} /* saída automática após 30 min sem uso */ let _inat=null;const _reinicia=()=>{clearTimeout(_inat);_inat=setTimeout(()=>{if(auth.currentUser){MSG="Sessão encerrada após 30 minutos sem uso. Entre novamente.";signOut(auth)}},30*60*1000)};["click","keydown","mousemove","touchstart","scroll"].forEach(ev=>document.addEventListener(ev,_reinicia,{passive:true}));_reinicia();fs=getFirestore(app);
 $('#lf').onsubmit=async e=>{e.preventDefault();$('#lmsg').textContent='Entrando…';try{await signInWithEmailAndPassword(auth,$('#le').value.trim(),$('#lp').value)}catch(x){$('#lmsg').textContent='E-mail ou senha incorretos.'}};
 $('#lr').onclick=async()=>{const m=$('#le').value.trim();if(!m){$('#lmsg').textContent='Digite seu e-mail acima.';return}try{await sendPasswordResetEmail(auth,m);$('#lmsg').textContent='Se o e-mail estiver cadastrado, você receberá o link para redefinir a senha.'}catch(x){$('#lmsg').textContent='Não foi possível enviar o e-mail.'}};
 $('#out').onclick=()=>signOut(auth);
