@@ -1,3 +1,52 @@
 {
-  "novidades": []
+  "novidades": [
+    {
+      "titulo": "MEI: novo teto de faturamento e perdão de dívidas federais",
+      "slug": "mei-novo-teto-e-perdao-de-dividas",
+      "categoria": "legislacao",
+      "data": "2026-11-16",
+      "autor": "Pinheiro Advogados",
+      "resumo": "A Lei Complementar nº 238/2026 eleva o limite do MEI para R$ 110 mil em 2027 e R$ 140 mil em 2028 e perdoa débitos federais do microempreendedor.",
+      "imagem": "",
+      "corpo": "Publicada em 21 de outubro de 2026, a Lei Complementar nº 238 alterou o Estatuto da Microempresa (LC nº 123/2006). As principais mudanças:\n\n- **Teto de faturamento:** sobe dos atuais R$ 81 mil para R$ 110 mil em 2027 e para R$ 140 mil a partir de 1º de janeiro de 2028.\n- **Empregados:** o MEI poderá contratar até dois empregados, a partir de 2027.\n- **Perdão de dívidas:** ficam perdoados os débitos federais do MEI constituídos até 13 de outubro de 2026, inscritos ou não em dívida ativa, com juros e multas, inclusive os parcelados. O perdão produz efeitos a partir de 1º de janeiro de 2027.\n\n**Pontos de atenção.** Quem tem ação judicial discutindo esses débitos precisa desistir dela para obter o perdão. Valores já pagos não serão devolvidos. O beneficiário deve manter os pagamentos em dia nos seis meses seguintes, sob pena de cancelamento. Dívidas com estados e municípios não estão incluídas.\n",
+      "fonte_nome": "Senado Federal — Lei Complementar nº 238/2026",
+      "fonte_url": "https://legis.senado.leg.br/norma/44276013/publicacao/44280206"
+    },
+    {
+      "titulo": "Lei Maria da Penha: mais hipóteses de afastamento imediato do agressor",
+      "slug": "maria-da-penha-afastamento-do-agressor",
+      "categoria": "legislacao",
+      "data": "2026-11-16",
+      "autor": "Pinheiro Advogados",
+      "resumo": "A Lei nº 15.411/2026 permite afastar o agressor do lar também quando houver risco à integridade sexual, moral ou patrimonial da mulher ou de seus dependentes.",
+      "imagem": "",
+      "corpo": "Até maio de 2026, o afastamento imediato do agressor previsto no art. 12-C da Lei Maria da Penha (Lei nº 11.340/2006) dependia de risco à vida ou à integridade física ou psicológica da mulher. A Lei nº 15.411, publicada em 21 de maio de 2026, estendeu a medida às demais formas de violência previstas na lei: sexual, moral e patrimonial.\n\nO afastamento é determinado pelo juiz. Quando o município não é sede de comarca, pode ser determinado pelo delegado de polícia e, se não houver delegado disponível no momento da denúncia, por um policial.\n\nEm situação de risco, a denúncia pode ser feita pelo 190 ou pela Central de Atendimento à Mulher, no 180.\n",
+      "fonte_nome": "Agência Senado",
+      "fonte_url": "https://www12.senado.leg.br/noticias/materias/2026/05/21/sancionada-ampliacao-de-situacoes-de-afastamento-do-lar-na-lei-maria-da-penha"
+    },
+    {
+      "titulo": "STJ: seguro de vida em grupo pode ter reajuste por faixa etária",
+      "slug": "stj-seguro-de-vida-reajuste-por-idade",
+      "categoria": "jurisprudencia",
+      "data": "2026-11-16",
+      "autor": "Pinheiro Advogados",
+      "resumo": "Em recurso repetitivo (Tema 1.211), o STJ validou o reajuste do prêmio do seguro de vida em grupo por mudança de faixa etária, desde que previsto no contrato e comunicado antes.",
+      "imagem": "",
+      "corpo": "A Segunda Seção do Superior Tribunal de Justiça decidiu, por unanimidade, que é válida a cláusula de reajuste do prêmio por mudança de faixa etária nos seguros de vida em grupo. O julgamento ocorreu no rito dos recursos repetitivos (Tema 1.211, REsp 1.887.666 e REsp 1.926.108, relator ministro Raul Araújo), e a tese deve ser seguida pelos demais tribunais.\n\nO reajuste só é válido se:\n\n- estiver expressamente previsto nas condições do contrato;\n- for comunicado previamente ao segurado nas renovações;\n- respeitar as normas da Susep e do CNSP.\n\nO tribunal afastou a aplicação, por analogia, das regras dos planos de saúde e do Estatuto da Pessoa Idosa que limitam reajustes por idade. A decisão não muda as regras dos planos de saúde.\n",
+      "fonte_nome": "Migalhas",
+      "fonte_url": "https://www.migalhas.com.br/quentes/466198/stj-valida-reajuste-por-idade-em-seguro-de-vida-em-grupo"
+    },
+    {
+      "titulo": "Novo site do Pinheiro Advogados",
+      "slug": "novo-site-pinheiro-advogados",
+      "categoria": "escritorio",
+      "data": "2026-11-16",
+      "autor": "Pinheiro Advogados",
+      "resumo": "O escritório está com novo endereço na internet: pinheiroadvogadosrn.com.br.",
+      "imagem": "",
+      "corpo": "O Pinheiro Advogados lança seu site oficial, pinheiroadvogadosrn.com.br. Nele estão as áreas de atuação, a equipe jurídica, artigos de orientação e novidades sobre legislação e jurisprudência, atualizados periodicamente.\n\nO contato com o escritório pode ser feito pelo e-mail pinheiroadvogados.rn@gmail.com ou pelos canais indicados na página de contato. A sede fica em Extremoz/RN.\n",
+      "fonte_nome": "",
+      "fonte_url": ""
+    }
+  ]
 }
