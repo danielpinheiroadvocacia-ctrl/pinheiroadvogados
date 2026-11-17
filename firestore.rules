@@ -1,9 +1,9 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Administração: e-mail institucional. Cria, bloqueia e reativa acessos.
+    // Administração: identificada pelo código da conta (UID) do e-mail institucional.
     function isAdmin() {
-      return request.auth != null && request.auth.token.email == 'pinheiroadvogados.rn@gmail.com';
+      return request.auth != null && request.auth.uid == '44DVOSWvHbWBCVpIAKJvbMoUHHx1';
     }
     // Advogado com acesso criado pela Administração e não bloqueado.
     function isMember() {
@@ -15,9 +15,15 @@ service cloud.firestore {
       allow read: if isAdmin() || (request.auth != null && request.auth.uid == uid);
       allow write: if isAdmin();
     }
-    // Dados do escritório: Administração e advogados ativos.
+    // Histórico de atividade: pode ser lido e acrescentado, nunca editado ou apagado.
+    match /log/{id} {
+      allow read, create: if isAdmin() || isMember();
+      allow update, delete: if false;
+    }
+    // Dados do escritório: advogados ativos leem, criam e editam; só a Administração exclui.
     match /{col}/{id} {
-      allow read, write: if col != 'acessos' && (isAdmin() || isMember());
+      allow read, create, update: if col != 'acessos' && col != 'log' && (isAdmin() || isMember());
+      allow delete: if col != 'acessos' && col != 'log' && isAdmin();
     }
   }
 }

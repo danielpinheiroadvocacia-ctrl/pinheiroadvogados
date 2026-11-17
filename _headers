@@ -1,0 +1,15 @@
+# Cabeçalhos de segurança (lidos automaticamente pelo Netlify)
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Content-Security-Policy: frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+
+/interno/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow

@@ -74,6 +74,7 @@ nav button{text-transform:uppercase;font-size:12px;letter-spacing:.08em}
 .stat.red{color:#231F20}.stat.red::before{content:none}
 label.quem{display:inline-flex;align-items:center;gap:6px;margin:0;color:#D0D0D0;font-weight:400;font-size:12px}
 label.quem select{width:auto;padding:4px 6px;background:#231F20;color:#F8F8F8;border-color:#999;font-size:12px}
+.nao-admin [data-a="excl"]{display:none!important}
 </style>
 </head>
 <body>
@@ -93,7 +94,7 @@ import {getFirestore,collection,doc,setDoc,deleteDoc,onSnapshot,getDoc,addDoc,qu
 const firebaseConfig={apiKey:"AIzaSyBdZeWvkhUHeWRB6W3UtnluJlbPhtJj3NA",authDomain:"pinheiro-advogados-e689b.firebaseapp.com",projectId:"pinheiro-advogados-e689b",storageBucket:"pinheiro-advogados-e689b.firebasestorage.app",messagingSenderId:"788851175797",appId:"1:788851175797:web:10b92b38635a1bb3b0633c"};
 /* E-mails com acesso (em minúsculas) e o nome que aparece no histórico */
 /* Acesso único: e-mail institucional do escritório */
-const ADMIN="pinheiroadvogados.rn@gmail.com"; /* login da Administração: cria e controla os acessos */
+const ADMIN="pinheiroadvogados.rn@gmail.com";const ADMIN_UID="44DVOSWvHbWBCVpIAKJvbMoUHHx1"; /* login da Administração: cria e controla os acessos */
 const EQUIPE={[ADMIN]:"Administração"};
 /* ============================================================ */
 const $=s=>document.querySelector(s);
@@ -112,7 +113,7 @@ const S={prazos:[],contratos:[],despesas:[],audiencias:[],retiradas:[],clientes:
 let LS=null;try{localStorage.setItem('g','1');LS=localStorage}catch(e){}
 const persist=c=>{try{LS&&LS.setItem('gest_'+c,JSON.stringify(S[c]))}catch(e){}};
 function save(c,it){if(db){db.collection(c).doc(it.id).set(it).catch(()=>alert('Não foi possível salvar. Verifique se você tem permissão de edição.'))}else{const a=S[c],i=a.findIndex(x=>x.id===it.id);i<0?a.push(it):a[i]=it;persist(c);render()}}
-function del(c,id){if(!confirm('Excluir este registro? Esta ação não pode ser desfeita.'))return;if(db){db.collection(c).doc(id).delete().catch(()=>alert('Sem permissão para excluir.'))}else{S[c]=S[c].filter(x=>x.id!==id);persist(c);render()}}
+function del(c,id){if(!ME||!ME.admin){alert('Somente a Administração pode excluir registros.');return}if(!confirm('Excluir este registro? Esta ação não pode ser desfeita.'))return;if(db){db.collection(c).doc(id).delete().catch(()=>alert('Sem permissão para excluir.'))}else{S[c]=S[c].filter(x=>x.id!==id);persist(c);render()}}
 const get=(c,id)=>S[c].find(x=>x.id===id);
 
 /* ---------- cálculos ---------- */
@@ -251,10 +252,10 @@ return `<div class="bar"><h2 style="margin:0">Acessos da equipe</h2><button clas
 <div class="note">Cada advogado entra com o próprio e-mail e senha. Só a Administração (${esc(ADMIN)}) cria, bloqueia e reativa acessos. Ao criar, informe a senha provisória ao advogado e peça que use “Trocar senha” no primeiro acesso.</div>
 <div class="card tw">${l.length?`<table><thead><tr><th>Situação</th><th>Nome</th><th>E-mail</th><th>Criado em</th><th></th></tr></thead><tbody>${l.map(a=>`<tr><td>${a.ativo===false?chip('BLOQUEADO','mut'):chip('ATIVO','grn')}</td><td>${esc(a.nome)}</td><td>${esc(a.email)}</td><td>${a.criadoEm&&a.criadoEm.toDate?a.criadoEm.toDate().toLocaleDateString('pt-BR'):'—'}</td><td><div class="row-actions">${a.ativo===false?`<button class="btn" data-a="reativar" data-id="${a.uid}">Reativar</button>`:`<button class="btn d" data-a="bloquear" data-id="${a.uid}">Bloquear</button>`}<button class="btn" data-a="resetAcesso" data-id="${a.uid}">Enviar link de nova senha</button></div></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Nenhum acesso criado. Clique em “Novo acesso” para cadastrar o primeiro advogado.</div>'}</div>
 <div class="note">Bloquear impede a entrada imediatamente, sem apagar o histórico. Para excluir uma conta de vez, use o console do Firebase (Authentication).</div>`}
-const ERRO_AUTH={'auth/email-already-in-use':'Já existe uma conta com este e-mail. Se for de alguém da equipe, use Reativar na lista; se não aparecer na lista, exclua a conta no console do Firebase (Authentication) e tente de novo.','auth/invalid-email':'E-mail inválido.','auth/weak-password':'A senha precisa ter pelo menos 6 caracteres.','auth/operation-not-allowed':'A criação de contas está desativada no Firebase (Authentication > Configurações > Ações do usuário).','auth/admin-restricted-operation':'A criação de contas está desativada no Firebase (Authentication > Configurações > Ações do usuário).'};
-A.novoAcesso=()=>form('Novo acesso',[{k:'nome',l:'Nome (como aparece no sistema, ex.: Dra. Larissa Araújo)',r:1},{k:'email',l:'E-mail do advogado',t:'email',r:1},{k:'senha',l:'Senha provisória (mínimo 6 caracteres)',t:'password',r:1}],{},async o=>{
+const ERRO_AUTH={'auth/email-already-in-use':'Já existe uma conta com este e-mail. Se for de alguém da equipe, use Reativar na lista; se não aparecer na lista, exclua a conta no console do Firebase (Authentication) e tente de novo.','auth/invalid-email':'E-mail inválido.','auth/weak-password':'A senha precisa ter pelo menos 12 caracteres.','auth/operation-not-allowed':'A criação de contas está desativada no Firebase (Authentication > Configurações > Ações do usuário).','auth/admin-restricted-operation':'A criação de contas está desativada no Firebase (Authentication > Configurações > Ações do usuário).'};
+A.novoAcesso=()=>form('Novo acesso',[{k:'nome',l:'Nome (como aparece no sistema, ex.: Dra. Larissa Araújo)',r:1},{k:'email',l:'E-mail do advogado',t:'email',r:1},{k:'senha',l:'Senha provisória (mínimo 12 caracteres)',t:'password',r:1}],{},async o=>{
 if(!ME||!ME.admin)return;const email=String(o.email||'').trim().toLowerCase();if(email===ADMIN){alert('Este é o e-mail da Administração.');return}
-if(String(o.senha||'').length<6){alert(ERRO_AUTH['auth/weak-password']);return}
+if(String(o.senha||'').length<12){alert(ERRO_AUTH['auth/weak-password']);return}
 let sec=null;try{sec=initializeApp(firebaseConfig,'cadastro-'+Date.now());const sa=getAuth(sec);const c=await createUserWithEmailAndPassword(sa,email,o.senha);
 await setDoc(doc(fs,'acessos',c.user.uid),{nome:String(o.nome).trim(),email,ativo:true,criadoEm:serverTimestamp(),criadoPor:ME.email});
 await signOut(sa).catch(()=>{});addDoc(collection(fs,'log'),{quem:ME.nome,acao:'criou acesso de',col:'',t:String(o.nome).trim(),em:serverTimestamp()}).catch(()=>{});
@@ -267,8 +268,8 @@ A.reativar=uid=>{const a=ACESSOS.find(x=>x.uid===uid);if(!a)return;
 setDoc(doc(fs,'acessos',uid),{ativo:true},{merge:true}).then(()=>addDoc(collection(fs,'log'),{quem:ME.nome,acao:'reativou acesso de',col:'',t:a.nome,em:serverTimestamp()})).catch(()=>alert('Não foi possível reativar.'))};
 A.resetAcesso=uid=>{const a=ACESSOS.find(x=>x.uid===uid);if(!a)return;
 sendPasswordResetEmail(auth,a.email).then(()=>alert('Link de nova senha enviado para '+a.email+'.')).catch(()=>alert('Não foi possível enviar o e-mail.'))};
-A.trocarSenha=()=>form('Trocar minha senha',[{k:'atual',l:'Senha atual',t:'password',r:1},{k:'nova',l:'Nova senha (mínimo 6 caracteres)',t:'password',r:1},{k:'conf',l:'Repita a nova senha',t:'password',r:1}],{},async o=>{
-if(o.nova!==o.conf){alert('A confirmação não confere com a nova senha.');return}if(String(o.nova).length<6){alert(ERRO_AUTH['auth/weak-password']);return}
+A.trocarSenha=()=>form('Trocar minha senha',[{k:'atual',l:'Senha atual',t:'password',r:1},{k:'nova',l:'Nova senha (mínimo 12 caracteres)',t:'password',r:1},{k:'conf',l:'Repita a nova senha',t:'password',r:1}],{},async o=>{
+if(o.nova!==o.conf){alert('A confirmação não confere com a nova senha.');return}if(String(o.nova).length<12){alert(ERRO_AUTH['auth/weak-password']);return}
 try{const u=auth.currentUser;await reauthenticateWithCredential(u,EmailAuthProvider.credential(u.email,o.atual));await updatePassword(u,o.nova);alert('Senha alterada.')}
 catch(x){const c=x&&x.code;alert(c==='auth/wrong-password'||c==='auth/invalid-credential'||c==='auth/invalid-login-credentials'?'Senha atual incorreta.':(ERRO_AUTH[c]||'Não foi possível trocar a senha.'))}});
 
@@ -309,11 +310,11 @@ $('#mode').textContent='Conectado: as alterações de qualquer sócio aparecem e
 alert(erro?('Importados: '+ok+'. Falharam: '+erro+'. Verifique sua conexão e tente de novo.'):('Backup importado: '+ok+' registro(s).'))};r.readAsText(f)};
 onAuthStateChanged(auth,async u=>{if(!u){stop();showLogin(MSG);MSG='';return}
 const em=(u.email||'').toLowerCase();
-if(em===ADMIN){ME={email:em,uid:u.uid,nome:'Administração',admin:true}}
+if(u.uid===ADMIN_UID){ME={email:em,uid:u.uid,nome:'Administração',admin:true}}
 else{let a=null;try{const r=await getDoc(doc(fs,'acessos',u.uid));a=r.exists()?r.data():null}catch(x){}
 if(!a||a.ativo===false){MSG=a?'Seu acesso está bloqueado. Fale com a administração do escritório.':'Este login não tem acesso liberado. Fale com a administração do escritório.';await signOut(auth);return}
 ME={email:em,uid:u.uid,nome:a.nome||em,admin:false}}
-$('#login').style.display='none';$('#out').hidden=false;$('#sn').hidden=false;$('#im').hidden=!ME.admin;$('#who').textContent=ME.nome;
+$('#login').style.display='none';$('#out').hidden=false;$('#sn').hidden=false;$('#im').hidden=!ME.admin;document.body.classList.toggle('nao-admin',!ME.admin);$('#who').textContent=ME.nome;
 const h=location.hash.slice(1);if(TABS[h]&&(h!=='acessos'||ME.admin))tab=h;else if(tab==='acessos'&&!ME.admin)tab='painel';subscribe()})}
 </script>
 </body>
