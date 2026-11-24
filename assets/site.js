@@ -55,18 +55,14 @@
   }
   function itemPub(a, mostrarArea) {
     return '<a class="pub" href="' + ROOT + 'artigo.html?id=' + encodeURIComponent(a.slug) + '">' +
-      '<div class="meta"><b>' + dataBR(a.data) + '</b>' + (mostrarArea ? '<span>' + esc(AREAS[a.area] || '') + '</span>' : '') + (a.autor ? '<span>' + esc(a.autor) + '</span>' : '') + '</div>' +
+      '<div class="meta">' + (mostrarArea ? '<b>' + esc(AREAS[a.area] || '') + '</b>' : '') + (a.autor ? '<span>' + esc(a.autor) + '</span>' : '') + '</div>' +
       '<div><h3>' + esc(a.titulo) + '</h3>' + (a.resumo ? '<p>' + esc(a.resumo) + '</p>' : '') + '</div></a>';
   }
 
-  // Página inicial: contagem por área + publicações recentes
+  // Página inicial: publicações recentes (a data de publicação não é exibida ao público)
   var recentes = document.getElementById('pub-recentes');
-  if (recentes || document.querySelector('[data-qtd]')) {
+  if (recentes) {
     artigos().then(function (l) {
-      document.querySelectorAll('[data-qtd]').forEach(function (el) {
-        var n = l.filter(function (a) { return a.area === el.getAttribute('data-qtd'); }).length;
-        el.textContent = n === 0 ? '' : n === 1 ? '1 publicação' : n + ' publicações';
-      });
       if (recentes) {
         recentes.innerHTML = l.length
           ? '<div class="lista-pub">' + l.slice(0, 4).map(function (a) { return itemPub(a, true); }).join('') + '</div>'
@@ -102,7 +98,7 @@
       document.title = a.titulo + ' · Pinheiro Advogados';
       titulo.textContent = a.titulo;
       mig.innerHTML = '<a href="' + ROOT + 'areas/' + a.area + '.html">' + esc(AREAS[a.area] || '') + '</a>';
-      meta.textContent = [dataBR(a.data), a.autor].filter(Boolean).join(' · ');
+      meta.textContent = a.autor || '';
       var html = window.marked ? window.marked.parse(a.corpo || '') : '<p>' + esc(a.corpo || '') + '</p>';
       if (window.DOMPurify) html = window.DOMPurify.sanitize(html);
       art.innerHTML = (a.imagem ? '<img class="capa" src="' + esc(img(a.imagem)) + '" alt="">' : '') +
@@ -129,7 +125,7 @@
   function cardNov(n) {
     return '<a class="nov" href="' + ROOT + 'novidade.html?id=' + encodeURIComponent(n.slug) + '">' +
       (n.imagem ? '<img src="' + esc(img(n.imagem)) + '" alt="">' : '') +
-      '<div class="nov-txt"><div class="nov-meta"><span class="cat">' + esc(CATS[n.categoria] || 'Informação') + '</span><span>' + dataBR(n.data) + '</span></div>' +
+      '<div class="nov-txt"><div class="nov-meta"><span class="cat">' + esc(CATS[n.categoria] || 'Informação') + '</span></div>' +
       '<h3>' + esc(n.titulo) + '</h3>' + (n.resumo ? '<p>' + esc(n.resumo) + '</p>' : '') + '<span class="ler">Ler mais</span></div></a>';
   }
   var novRec = document.getElementById('nov-recentes');
@@ -164,7 +160,7 @@
       document.title = n.titulo + ' · Pinheiro Advogados';
       t.textContent = n.titulo;
       document.getElementById('nov-cat').innerHTML = '<a href="' + ROOT + 'novidades.html">Novidades</a> · <a href="' + ROOT + 'novidades.html#' + esc(n.categoria || '') + '">' + esc(CATS[n.categoria] || 'Informação') + '</a>';
-      document.getElementById('nov-meta').textContent = [dataBR(n.data), n.autor].filter(Boolean).join(' · ');
+      document.getElementById('nov-meta').textContent = n.autor || '';
       var html = window.marked ? window.marked.parse(n.corpo || '') : '<p>' + esc(n.corpo || '') + '</p>';
       if (window.DOMPurify) html = window.DOMPurify.sanitize(html);
       var fonte = n.fonte_url ? '<p class="fonte">Fonte: <a href="' + esc(n.fonte_url) + '" target="_blank" rel="noopener">' + esc(n.fonte_nome || n.fonte_url) + '</a></p>' : '';
