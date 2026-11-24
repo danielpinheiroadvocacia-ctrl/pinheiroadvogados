@@ -332,3 +332,10 @@ footer .logo-svg{height:72px;width:auto;color:var(--claro)}
 /* Link discreto para a área interna (rodapé) */
 .link-interno{color:var(--medio);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--escuro-3);padding-bottom:2px}
 .link-interno:hover{color:var(--claro);border-color:var(--medio)}
+
+/* Instagram (@pinheiroadvogados.rn): canal no contato e link no rodapé */
+.contato-grid{grid-template-columns:repeat(2,1fr)}
+@media (max-width:820px){.contato-grid{grid-template-columns:1fr}}
+.link-social{display:inline-flex;align-items:center;gap:8px;color:var(--claro);font-size:.8rem;letter-spacing:.06em;text-decoration:none}
+.link-social svg{width:18px;height:18px}
+.link-social:hover{color:var(--branco)}
